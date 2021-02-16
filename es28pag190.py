@@ -1,4 +1,6 @@
 '''
+ESERCIZIO 28 PAG 190
+
 I nomi delle città e i corrispondenti Codici di Avviamento 
 Postale(CAP) vengono inseriti da tastiera e memorizzati in un
 dizionario, dove il CAP è la chiave. Fornito poi da tastiera 
@@ -8,9 +10,6 @@ compresa nell'elenco.
 Analogalmente, fornendo il CAP restituisce il nome della città
 oppure un messaggio di errore.
 '''
-
-print("ESERCIZIO 28")
-print("PROGRAMMA CAP")
 
 cap_e_citta = {}
 citta_e_cap = {}
