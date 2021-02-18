@@ -45,16 +45,15 @@ while True:
 
         if reddito < 0:
             print("Il reddito non può essere inferiore a zero")
-            
+
         else:
 
             a = 0#Contatore a
             b = 1#Contatore b
-            c = 0#Contatore c
 
             for n in limiti:#Ciclo for
                 if limiti[a] < reddito < limiti[b]:
-                    imposta = tassa[a] * reddito - costante[c]#Calcola l'imposta
+                    imposta = tassa[a] * reddito - costante[a]#Calcola l'imposta
 
                 a += 1
                 b += 1
@@ -64,8 +63,6 @@ while True:
                     a = a - 1
                 if b > 5:
                     b = b - 1
-                if c > 4:
-                    c = c - 1
 
             percentuale = imposta/reddito * 100 #Calcola la tassazione media
 
