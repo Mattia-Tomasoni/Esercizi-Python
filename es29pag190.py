@@ -45,6 +45,7 @@ while True:
 
         if reddito < 0:
             print("Il reddito non può essere inferiore a zero")
+            
         else:
 
             a = 0#Contatore a
