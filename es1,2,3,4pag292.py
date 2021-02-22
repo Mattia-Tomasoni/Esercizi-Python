@@ -57,7 +57,7 @@ class Atleta:
                 print(self.name, "non va a fare la visita medica")
 
         else:
-            print(self.name, "è apposto")
+            print(self.name, "è apposto con la visita medica")
 
     def main(self):
         self.info()
@@ -66,10 +66,26 @@ class Atleta:
 
         self.effettua_visita()
 
-a1 = Atleta("Pino", "23", False, "Gialli")
-a1.main()
 
-print()
+while True:
+    scelta = input("Vuoi identificare un'atleta(+ = fine)? ")
 
-a2 = Atleta("Gianfranco", "45", True, "Rossi")
-a2.main()
+    if scelta == "+":
+        break
+    
+    else:
+        name = input("Qual è il suo nome? ")
+        age = int(input("Qual è l'età di " + name + "?"))
+        visitamedica = input("Ha fatto la visita medica? ").upper()
+
+        if visitamedica == "SI":
+            visitamedica = True
+        else:
+            visitamedica = False
+
+        team = input("Di che team fa parte? ")
+        
+        a1 = Atleta(name, age, visitamedica, team)
+        a1.main()
+
+        print()
