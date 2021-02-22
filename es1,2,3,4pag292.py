@@ -83,7 +83,7 @@ while True:
         else:
             visitamedica = False
 
-        team = input("Di che team fa parte? ")
+        team = input("Di che squadra fa parte? ")
         
         a1 = Atleta(name, age, visitamedica, team)
         a1.main()
