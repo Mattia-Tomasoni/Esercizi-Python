@@ -68,7 +68,7 @@ class Atleta:
 
 
 while True:
-    scelta = input("Vuoi identificare un'atleta(+ = fine)? ")
+    scelta = input("Vuoi descrivere un'atleta(+ = fine)? ")
 
     if scelta == "+":
         break
