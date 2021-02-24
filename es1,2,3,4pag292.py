@@ -57,7 +57,7 @@ class Atleta:
                 print(self.name, "non va a fare la visita medica")
 
         else:
-            print(self.name, "è apposto con la visita medica")
+            print(self.name, "è a posto con la visita medica")
 
     def main(self):
         self.info()
@@ -78,14 +78,11 @@ while True:
         age = int(input("Qual è l'età di " + name + "?"))
         visitamedica = input("Ha fatto la visita medica? ").upper()
 
-        if visitamedica == "SI":
-            visitamedica = True
-        else:
-            visitamedica = False
+
 
         team = input("Di che squadra fa parte? ")
         
-        a1 = Atleta(name, age, visitamedica, team)
+        a1 = Atleta(name, age, visitamedica == "SI", team)
         a1.main()
 
         print()
