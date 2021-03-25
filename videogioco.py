@@ -30,15 +30,20 @@ def position(n):
     x = random.randint(0, n - 2)
     return x
 
-def movimento(pokemon, entities_list):
+def movimento(pokemon, entities_list, field):
     while True:
         direction = input("UP, DOWN, RIGHT, LEFT? ").upper()
         if direction == "UP" or direction == "DOWN" or direction == "RIGHT" or direction == "LEFT":
+            last_x = pokemon.x
+            last_y = pokemon.y
             pokemon.move(direction)
+            pokemon.limits(field, last_x, last_y)
+            pokemon.field.draw()
 
             for e in entities_list[1:]:
-                if pokemon.x == e.x and pokemon.y == e.y:
+                if pokemon.x == e.x - 1 or pokemon.x == e.x + 1 and pokemon.y == e.y - 1 or pokemon.y == e.y + 1:
                     pokemon.fight(e)
+                    pokemon.field.draw()
         
         elif direction == "":
             pass
@@ -54,37 +59,23 @@ class Entity:
         self.field.entities.append(self)
 
     def move(self, direction):
-            if direction == "DOWN":
+            if direction == "DOWN" and self.y > self.field.h - 1:
                 self.y += 1
-                if self.y <= n - 1:
-                    self.field.draw()
-                else:
-                    self.y -= 1
-                    self.field.draw()
 
-            elif direction == "UP":
+            elif direction == "UP" and self.y > 0:
                 self.y -= 1
-                if self.y >= 0:
-                    self.field.draw()
-                else:
-                    self.y += 1
-                    self.field.draw()
 
-            elif direction == "RIGHT":
+            elif direction == "RIGHT" and self.x < self.field.w - 1:
                 self.x += 1
-                if self.x <= n - 1:
-                    self.field.draw()
-                else:
-                    self.x -= 1
-                    self.field.draw()
 
-            elif direction == "LEFT":
+            elif direction == "LEFT" and self.x > 0:
                 self.x -= 1
-                if self.x >= 0:
-                    self.field.draw()
-                else:
-                    self.x += 1
-                    self.field.draw()
+
+    def limits(self, field, last_x, last_y):
+        for e in field.entities[1:]:
+            if e.y == self.y and e.x == self.x:
+                self.y = last_y
+                self.x = last_x
 
 class Pokemon(Entity):
     def __init__(self, name, x, y, field, Lv, HpB, AtkB, DefB, SpAtkB, SpDefB, SpdB):
@@ -178,14 +169,14 @@ class Pokemon(Entity):
                 break
 
 class Field:
-    def __init__(self, width, length):
-        self.width = width
-        self.length = length
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
         self.entities = []
 
     def draw(self):
-        for y in range(self.length):
-            for x in range(self.width):
+        for y in range(self.h):
+            for x in range(self.w):
                 for e in self.entities:
                     if y == e.y and x == e.x:
                         print("[X]", end = "")
@@ -203,4 +194,4 @@ p2 = Pokemon("rattata", position(n), position(n), field, 2, 30, 56, 35, 25, 35, 
 p3 = Pokemon("pidgey", position(n), position(n), field, 3, 40, 45, 40, 35, 35, 56)
 field.draw()
 
-movimento(p1, field.entities)
+movimento(p1, field.entities, field)
